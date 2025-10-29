@@ -1,0 +1,23 @@
+{
+  "name": "vision-algorithms-website",
+  "version": "1.0.0",
+  "description": "Vision Algorithms company website showcasing products and stats",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'Build complete - static site ready for deployment'",
+    "serve": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "vision-algorithms",
+    "os-engine",
+    "website",
+    "static-site"
+  ],
+  "author": "Vision Algorithms",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "express": "^4.21.2"
+  }
+}
