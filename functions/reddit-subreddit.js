@@ -30,14 +30,15 @@ exports.handler = async (event, context) => {
     };
     
     // Try various event properties (Netlify Functions)
-    if (event.pathParameters?.subreddit) {
-      subredditName = event.pathParameters.subreddit;
-    } else if (event.queryStringParameters?.subreddit) {
-      subredditName = event.queryStringParameters.subreddit;
-    } else if (event.path && checkPath(event.path)) {
+    // With rewrites (status 200), event.path contains the original request path
+    if (event.path && checkPath(event.path)) {
       subredditName = checkPath(event.path);
     } else if (event.rawPath && checkPath(event.rawPath)) {
       subredditName = checkPath(event.rawPath);
+    } else if (event.pathParameters?.subreddit) {
+      subredditName = event.pathParameters.subreddit;
+    } else if (event.queryStringParameters?.subreddit) {
+      subredditName = event.queryStringParameters.subreddit;
     } else if (event.rawQueryString) {
       // Sometimes params are in rawQueryString like "subreddit=osengine"
       const params = new URLSearchParams(event.rawQueryString);

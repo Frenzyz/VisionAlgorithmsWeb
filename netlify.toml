@@ -5,28 +5,28 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Rewrite API calls to Netlify Functions (pass parameters via query string)
+# Rewrite API calls to Netlify Functions (using rewrites to preserve HTTPS)
 [[redirects]]
   from = "/api/reddit/subreddit/:subreddit"
-  to = "/.netlify/functions/reddit-subreddit?subreddit=:subreddit"
+  to = "/.netlify/functions/reddit-subreddit"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/reddit/posts/:subreddit"
-  to = "/.netlify/functions/reddit-posts?subreddit=:subreddit"
+  to = "/.netlify/functions/reddit-posts"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/steam/appdetails/:appid"
-  to = "/.netlify/functions/steam-appdetails?appid=:appid"
+  to = "/.netlify/functions/steam-appdetails"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/steamspy/appdetails/:appid"
-  to = "/.netlify/functions/steamspy-appdetails?appid=:appid"
+  to = "/.netlify/functions/steamspy-appdetails"
   status = 200
   force = true
 

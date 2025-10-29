@@ -21,16 +21,21 @@ exports.handler = async (event, context) => {
     // Extract subreddit from query params (Netlify redirect passes as query param)
     let subredditName = 'osengine';
     
-    // Check query parameters first (Netlify redirects pass params via query string)
-    if (event.queryStringParameters?.subreddit) {
+    // With rewrites (status 200), event.path contains the original request path
+    const checkPath = (pathString) => {
+      if (!pathString) return null;
+      const match = pathString.match(/\/posts\/([^\/\?&#]+)/i);
+      return match ? match[1] : null;
+    };
+    
+    if (event.path && checkPath(event.path)) {
+      subredditName = checkPath(event.path);
+    } else if (event.rawPath && checkPath(event.rawPath)) {
+      subredditName = checkPath(event.rawPath);
+    } else if (event.queryStringParameters?.subreddit) {
       subredditName = event.queryStringParameters.subreddit;
     } else if (event.pathParameters?.subreddit) {
       subredditName = event.pathParameters.subreddit;
-    } else if (event.path) {
-      const match = event.path.match(/\/posts\/([^\/\?&#]+)/i);
-      if (match) {
-        subredditName = match[1];
-      }
     }
     
     subredditName = subredditName.toLowerCase().trim();
