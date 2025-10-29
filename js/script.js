@@ -165,11 +165,10 @@ class VisionAlgorithms {
 
     // Use requestAnimationFrame for smoother performance
     let ticking = false;
-    let lastScrollY = 0;
 
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
-      const parallaxSpeed = 0.3; // Reduced speed for better UX
+      const parallaxSpeed = 0.2; // Further reduced speed for better UX
 
       // Only apply parallax when hero is in view
       const heroRect = hero.getBoundingClientRect();
@@ -180,14 +179,12 @@ class VisionAlgorithms {
       const visiblePercentage = Math.max(0, visibleHeight / windowHeight);
 
       // Only apply parallax when hero is significantly visible
-      if (visiblePercentage > 0.1) {
+      if (visiblePercentage > 0.2 && heroRect.top < windowHeight && heroRect.bottom > 0) {
         hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
       } else {
         hero.style.transform = 'translateY(0)';
       }
 
-      // Prevent layout shifts by ensuring transform doesn't cause overlap
-      lastScrollY = scrolled;
       ticking = false;
     };
 

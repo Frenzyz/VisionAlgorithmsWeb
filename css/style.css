@@ -139,24 +139,7 @@ body {
     padding: 0 var(--space-lg);
 }
 
-/* Skip Link */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: var(--space-md);
-    background: var(--color-primary);
-    color: var(--color-bg-primary);
-    padding: var(--space-sm) var(--space-md);
-    text-decoration: none;
-    border-radius: var(--radius);
-    font-weight: 600;
-    z-index: var(--z-tooltip);
-    transition: top var(--transition-normal);
-}
 
-.skip-link:focus {
-    top: var(--space-md);
-}
 
 /* Header & Navigation */
 .header {
@@ -241,6 +224,10 @@ body {
     color: var(--color-text-primary);
 }
 
+.nav-link.active {
+    color: var(--color-text-primary);
+}
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -251,6 +238,10 @@ body {
     background: var(--gradient-primary);
     transition: width var(--transition-normal);
     border-radius: 1px;
+}
+
+.nav-link.active::after {
+    width: 100%;
 }
 
 .nav-link:hover::after,
@@ -1138,6 +1129,8 @@ textarea:focus {
         border-top: 1px solid var(--color-border);
         padding: var(--space-lg);
         flex-direction: column;
+        box-shadow: var(--shadow-lg);
+        z-index: var(--z-modal);
     }
 
     .nav-list {
@@ -1150,6 +1143,18 @@ textarea:focus {
         padding: var(--space-md);
         width: 100%;
         text-align: center;
+        border-radius: var(--radius);
+        transition: all var(--transition-normal);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateX(4px);
+    }
+
+    .nav-link::after {
+        display: none;
     }
 
     .section {
@@ -1218,6 +1223,28 @@ textarea:focus {
 
     .footer-links {
         grid-template-columns: 1fr;
+    }
+
+    .nav {
+        height: 70px;
+    }
+
+    .brand-logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .brand-text {
+        font-size: var(--text-lg);
+    }
+
+    .main {
+        margin-top: 70px;
+    }
+
+    .hero {
+        min-height: 80vh;
+        padding: var(--space-4xl) 0;
     }
 }
 
