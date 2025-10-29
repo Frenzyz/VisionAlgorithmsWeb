@@ -84,17 +84,38 @@
 
                     <div class="stats-grid mt-12">
                         <div class="stat-card">
-                            <div class="stat-number" data-count="180">0</div>
+                            <div class="stat-number" data-count="200" data-stat="steam-wishlists">0</div>
                             <div class="stat-label">Steam Wishlists</div>
+                            <div class="stat-badge live-badge">
+                                <span class="live-indicator"></span>
+                                Live
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-number" data-count="50" data-stat="reddit-members">0</div>
                             <div class="stat-label">Reddit Members</div>
+                            <div class="stat-badge live-badge">
+                                <span class="live-indicator"></span>
+                                Live
+                            </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number" data-count="178">0</div>
+                            <div class="stat-number" data-count="178" data-stat="reddit-views">0</div>
                             <div class="stat-label">Reddit Views (K)</div>
+                            <div class="stat-badge live-badge">
+                                <span class="live-indicator"></span>
+                                Live
+                            </div>
                         </div>
+                    </div>
+                    <div class="stats-meta mt-6 flex items-center justify-center gap-4">
+                        <button id="refresh-stats" class="refresh-button" aria-label="Refresh statistics">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Refresh Stats</span>
+                        </button>
+                        <p id="last-update-time" class="text-sm text-muted-foreground">
+                            Fetching live data...
+                        </p>
                     </div>
                 </div>
             </div>
@@ -170,7 +191,7 @@
 
                                 <div class="mt-6 space-y-4">
                                     <p class="text-sm text-muted-foreground">
-                                        With 180+ Steam wishlists and growing community support, OS Engine is redefining desktop customization.
+                                        With 200+ Steam wishlists and growing community support, OS Engine is redefining desktop customization.
                                     </p>
 
                                     <div class="flex gap-4">
@@ -210,7 +231,7 @@
                             to personalize their computing environment like never before.
                         </p>
                         <p></p>
-                            With 180+ Steam wishlists, 50+ Reddit community members, and over 178,534 Reddit views with 690 upvotes,
+                            With 200+ Steam wishlists, 50+ Reddit community members, and over 178,534 Reddit views with 690 upvotes,
                             we're building momentum and committed to delivering innovative solutions that push the boundaries
                             of what's possible in digital environments.
                         </p>
@@ -231,15 +252,33 @@
 
                 <div class="company-stats">
                     <div class="company-stat">
-                        <div class="company-stat-number">180+</div>
+                        <div class="company-stat-number">
+                            <span data-stat="steam-wishlists">200</span>+
+                            <div class="stat-badge live-badge">
+                                <span class="live-indicator"></span>
+                                Live
+                            </div>
+                        </div>
                         <div class="company-stat-label">Steam Wishlists</div>
                     </div>
                     <div class="company-stat">
-                        <div class="company-stat-number">50+</div>
+                        <div class="company-stat-number">
+                            <span data-stat="reddit-members">50</span>+
+                            <div class="stat-badge live-badge">
+                                <span class="live-indicator"></span>
+                                Live
+                            </div>
+                        </div>
                         <div class="company-stat-label">Reddit Members</div>
                     </div>
                     <div class="company-stat">
-                        <div class="company-stat-number">178K</div>
+                        <div class="company-stat-number">
+                            <span data-stat="reddit-views">178</span>K
+                            <div class="stat-badge live-badge">
+                                <span class="live-indicator"></span>
+                                Live
+                            </div>
+                        </div>
                         <div class="company-stat-label">Reddit Views</div>
                     </div>
                 </div>
@@ -292,7 +331,7 @@
                             </div>
                             <div class="contact-details">
                                 <span class="contact-label block text-lg font-semibold mb-1">Steam</span>
-                                <span class="contact-value text-sm text-muted-foreground">180+ Wishlists</span>
+                                <span class="contact-value text-sm text-muted-foreground">200+ Wishlists</span>
                             </div>
                         </a>
                     </div>
@@ -340,6 +379,7 @@
         </div>
     </footer>
 
+    <script src="js/stats-api.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

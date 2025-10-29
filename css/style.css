@@ -500,3 +500,149 @@
         @apply grid-cols-1 gap-6;
     }
 }
+
+/* Live Statistics Styles */
+.stat-badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-1 text-xs font-medium rounded-full;
+}
+
+.live-badge {
+    @apply bg-green-500/10 text-green-500 border border-green-500/20;
+    animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.live-indicator {
+    @apply w-2 h-2 rounded-full bg-green-500;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+}
+
+/* Loading state for stats */
+.stat-card.loading,
+.company-stat.loading {
+    @apply opacity-60;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Stat card positioning for badge */
+.stat-card {
+    @apply relative;
+}
+
+.stat-card .stat-badge {
+    @apply mt-2;
+}
+
+.company-stat-number {
+    @apply relative inline-flex items-center gap-2 flex-wrap justify-center;
+}
+
+.company-stat-number .stat-badge {
+    @apply text-xs;
+}
+
+/* Stats meta section */
+.stats-meta {
+    @apply text-center;
+}
+
+/* Refresh button */
+.refresh-button {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md;
+    @apply bg-muted text-foreground border border-border;
+    @apply hover:bg-accent hover:text-accent-foreground;
+    @apply transition-all duration-200;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+}
+
+.refresh-button:hover {
+    @apply shadow-md;
+}
+
+.refresh-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.refresh-button.loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Refresh feedback notification */
+.refresh-feedback {
+    @apply fixed top-20 right-4 px-4 py-3 rounded-md shadow-lg z-50;
+    @apply transform translate-x-full transition-transform duration-300;
+    @apply flex items-center gap-2;
+}
+
+.refresh-feedback.show {
+    @apply translate-x-0;
+}
+
+.refresh-feedback.success {
+    @apply bg-green-500/10 text-green-500 border border-green-500/20;
+}
+
+.refresh-feedback.error {
+    @apply bg-red-500/10 text-red-500 border border-red-500/20;
+}
+
+/* Last update time */
+#last-update-time {
+    @apply text-xs text-muted-foreground;
+}
+
+/* Responsive adjustments for live badges */
+@media (max-width: 768px) {
+    .stat-badge {
+        @apply text-xs px-2 py-0.5;
+    }
+    
+    .live-indicator {
+        @apply w-1.5 h-1.5;
+    }
+    
+    .refresh-button {
+        @apply text-xs px-3 py-1.5;
+    }
+    
+    .refresh-feedback {
+        @apply right-2 top-16 text-sm;
+    }
+}
