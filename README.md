@@ -42,6 +42,7 @@ VisionAlgorithmsWeb/
 ├── js/
 │   └── script.js       # Interactive features and animations
 ├── images/             # Image assets directory (logo, icons, etc.)
+├── videos/             # Video assets directory
 ├── public/             # Static assets for deployment
 ├── package.json        # NPM configuration and scripts
 ├── .gitignore          # Git ignore rules
@@ -119,6 +120,8 @@ To modify the website:
 4. Add images to the `images/` directory
 5. Update `package.json` for dependencies and scripts
 6. Update logo in navigation and favicon
+
+
 
 ## Deployment
 

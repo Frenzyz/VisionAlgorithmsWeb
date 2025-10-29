@@ -1,0 +1,10 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#1a1a1a"/>
+  <rect x="50" y="50" width="700" height="350" fill="#2a2a2a" rx="8"/>
+  <rect x="75" y="75" width="650" height="50" fill="#3a3a3a" rx="4"/>
+  <rect x="75" y="150" width="300" height="150" fill="#4a4a4a" rx="4"/>
+  <rect x="400" y="150" width="325" height="75" fill="#4a4a4a" rx="4"/>
+  <rect x="400" y="250" width="325" height="50" fill="#4a4a4a" rx="4"/>
+  <text x="400" y="125" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="24" font-weight="bold">OS Engine Demo</text>
+  <text x="400" y="380" text-anchor="middle" fill="#cccccc" font-family="Arial" font-size="16">Video Loading...</text>
+</svg>

@@ -1,121 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head></head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vision Algorithms - Innovative Software Solutions</title>
-    <meta name="description" content="Vision Algorithms builds innovative software that transforms digital experiences. Discover OS Engine and other cutting-edge products.">
-    <meta name="keywords" content="Vision Algorithms, OS Engine, dynamic wallpapers, macOS software, software development">
+    <title>Vision Algorithms</title>
+    <meta name="description" content="Vision Algorithms - Creating innovative software solutions including OS Engine, the dynamic desktop customization platform">
+    <meta name="keywords" content="OS Engine, Vision Algorithms, desktop customization, Steam, software development">
     <meta name="author" content="Vision Algorithms">
-    <meta name="theme-color" content="#000000">
-
-    <!-- Preload critical resources -->
-    <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="images/visionappiconinverted 2.svg" as="image">
-    <link rel="preload" href="icons/performance.svg" as="image">
-    <link rel="preload" href="icons/customization.svg" as="image">
-    <link rel="preload" href="icons/evolution.svg" as="image">
-    <link rel="preload" href="icons/security.svg" as="image">
-    <link rel="preload" href="icons/email.svg" as="image">
-    <link rel="preload" href="icons/discord.svg" as="image">
-    <link rel="preload" href="icons/reddit.svg" as="image">
-    <link rel="preload" href="icons/steam.svg" as="image">
-
-    <!-- Fonts -->
+    <meta property="og:title" content="Vision Algorithms">
+    <meta property="og:description" content="Creating innovative software solutions including OS Engine, the dynamic desktop customization platform">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Favicon -->
-    <link rel="icon" href="images/visionappiconinverted 2.svg" type="image/svg+xml">
-    <link rel="icon" href="images/visionappiconinverted 2.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="icon" type="image/svg+xml" href="images/visionappiconinverted 2.svg">
 </head>
-<body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+<body class="bg-background text-foreground font-sans antialiased">
+    <!-- Skip to main content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">
+        Skip to main content
+    </a>
 
-    <!-- Header Navigation -->
-    <header class="header" role="banner">
-        <div class="container">
-            <nav class="nav" aria-label="Main navigation">
-                <div class="nav-brand">
-                    <a href="/" class="brand-link" aria-label="Vision Algorithms Home">
-                        <img src="images/visionappiconinverted 2.svg" alt="Vision Algorithms Logo" class="brand-logo">
-                        <span class="brand-text">Vision Algorithms</span>
-                    </a>
-                </div>
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="images/visionappiconinverted 2.svg" alt="Vision Algorithms Logo" class="logo-image w-8 h-8 object-contain rounded-sm">
+                    <span class="text-lg font-semibold tracking-tight">Vision Algorithms</span>
+                </a>
+            </div>
 
-                <div class="nav-menu">
-                    <ul class="nav-list" role="list">
-                        <li class="nav-item">
-                            <a href="#products" class="nav-link">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#features" class="nav-link">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#about" class="nav-link">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#contact" class="nav-link">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://osengine.org" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">
-                                OS Engine
-                                <span class="external-icon" aria-hidden="true">↗</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Mobile menu toggle -->
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span class="hamburger" aria-hidden="true"></span>
-                </button>
+            <nav class="nav-menu">
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#stats" class="nav-link">Stats</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="https://store.steampowered.com/app/3984710/OS_Engine/"
+                   class="btn btn-primary btn-sm"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Get OS Engine
+                </a>
             </nav>
+
+            <button class="mobile-menu-button" aria-expanded="false">
+                <span class="sr-only">Open menu</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main id="main-content" class="main">
+    <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero" aria-labelledby="hero-heading">
+        <section class="hero-section">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 id="hero-heading" class="hero-title">
-                            <span class="title-gradient">Vision Algorithms</span>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Building innovative software solutions that transform digital experiences
-                        </p>
-                        <div class="hero-actions">
-                            <a href="#products" class="btn btn--primary btn--large">
-                                Explore Products
-                            </a>
-                            <a href="#contact" class="btn btn--secondary btn--large">
-                                Get in Touch
-                            </a>
-                        </div>
+                    <h1 class="hero-title">
+                        <span class="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                            Vision Algorithms
+                        </span>
+                    </h1>
+                    <p class="hero-description">
+                        Creating innovative software solutions that push the boundaries of digital environments.
+                        Experience the future of desktop customization with OS Engine.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="https://store.steampowered.com/app/3984710/OS_Engine/"
+                           class="btn btn-primary btn-lg"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Get OS Engine on Steam
+                        </a>
+                        <a href="#products" class="btn btn-outline btn-lg">
+                            Learn More
+                        </a>
                     </div>
 
-                    <div class="hero-visual">
-                        <div class="hero-stats">
-                            <div class="stat-card">
-                                <div class="stat-number" data-count="180">0</div>
-                                <div class="stat-label">Steam Wishlists</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number" data-count="50">0</div>
-                                <div class="stat-label">Reddit Members</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-number" data-count="200+">0</div>
-                                <div class="stat-label">Customers</div>
-                            </div>
+                    <div class="stats-grid mt-12">
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="180">0</div>
+                            <div class="stat-label">Steam Wishlists</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Reddit Members</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="178">0</div>
+                            <div class="stat-label">Reddit Views (K)</div>
                         </div>
                     </div>
                 </div>
@@ -123,247 +101,200 @@
         </section>
 
         <!-- Products Section -->
-        <section id="products" class="section section--products" aria-labelledby="products-heading">
+        <section id="products" class="product-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 id="products-heading" class="section-title">Our Flagship Product</h2>
-                    <p class="section-subtitle">Experience the future of desktop customization</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Our Flagship Product</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        OS Engine - Dynamic desktop customization software that transforms your Windows experience
+                    </p>
                 </div>
 
-                <div class="product-showcase">
-                    <div class="product-media">
-                        <div class="video-container">
-                            <video
-                                class="product-video"
-                                autoplay
-                                muted
-                                loop
-                                playsinline
-                                aria-label="OS Engine product demonstration video"
-                                poster="images/video-poster.jpg"
-                            >
-                                <source src="videos/Steam Trailer Finalized.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-controls">
-                                <button class="video-play-btn" aria-label="Play video">
-                                    <span class="play-icon" aria-hidden="true">▶</span>
-                                </button>
+                <div class="product-grid">
+                    <div class="video-wrapper">
+                        <video
+                            class="product-video"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            aria-label="OS Engine product demonstration video"
+                            poster="images/video-poster.jpg"
+                        >
+                            <source src="videos/Steam Trailer Finalized Optimized.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <div class="product-features">
+                        <div class="card p-6">
+                            <div class="card-header">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="card-title">OS Engine</h3>
+                                    <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
+                                        Available Now
+                                    </span>
+                                </div>
+                                <p class="card-description mt-2">
+                                    Transform your desktop into a dynamic, interactive workspace with real-time customization and advanced features.
+                                </p>
+                            </div>
+
+                            <div class="card-content">
+                                <div class="feature-list">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">✓</span>
+                                        <span class="feature-text">Real-time desktop customization</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">✓</span>
+                                        <span class="feature-text">Dynamic wallpaper engine</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">✓</span>
+                                        <span class="feature-text">Advanced window management</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">✓</span>
+                                        <span class="feature-text">Custom widget system</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">✓</span>
+                                        <span class="feature-text">Performance optimization</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">✓</span>
+                                        <span class="feature-text">Regular updates & support</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 space-y-4">
+                                    <p class="text-sm text-muted-foreground">
+                                        With 180+ Steam wishlists and growing community support, OS Engine is redefining desktop customization.
+                                    </p>
+
+                                    <div class="flex gap-4">
+                                        <a href="https://store.steampowered.com/app/3984710/OS_Engine/"
+                                           class="btn btn-primary flex-1"
+                                           target="_blank"
+                                           rel="noopener noreferrer">
+                                            Buy on Steam
+                                        </a>
+                                        <a href="https://discord.gg/osengine"
+                                           class="btn btn-outline flex-1"
+                                           target="_blank"
+                                           rel="noopener noreferrer">
+                                            Join Community
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="product-info">
-                        <div class="product-header">
-                            <div class="product-badge">Featured</div>
-                            <h3 class="product-title">OS Engine</h3>
-                            <p class="product-tagline">
-                                Transform your desktop into a living canvas
-                            </p>
-                        </div>
-
-                        <div class="product-description">
-                            <p>
-                                Experience dynamic video wallpapers, custom HTML overlays, and real-time widgets —
-                                all optimized for performance and battery life.
-                            </p>
-                        </div>
-
-                        <div class="product-features">
-                            <h4 class="features-title">Key Features</h4>
-                            <ul class="features-list" role="list">
-                                <li class="feature-item">
-                                    <span class="feature-icon" aria-hidden="true">•</span>
-                                    Dynamic Video Wallpapers
-                                </li>
-                                <li class="feature-item">
-                                    <span class="feature-icon" aria-hidden="true">•</span>
-                                    Custom HTML Overlays
-                                </li>
-                                <li class="feature-item">
-                                    <span class="feature-icon" aria-hidden="true">•</span>
-                                    Web Wallpapers
-                                </li>
-                                <li class="feature-item">
-                                    <span class="feature-icon" aria-hidden="true">•</span>
-                                    Multi-monitor Support
-                                </li>
-                                <li class="feature-item">
-                                    <span class="feature-icon" aria-hidden="true">•</span>
-                                    AI-assisted HTML
-                                </li>
-                                <li class="feature-item">
-                                    <span class="feature-icon" aria-hidden="true">•</span>
-                                    Battery Friendly
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="product-actions">
-                            <a href="https://store.steampowered.com/app/3984710/OS_Engine/"
-                               class="btn btn--primary btn--full"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                Buy on Steam
-                            </a>
-                            <a href="https://osengine.org"
-                               class="btn btn--outline btn--full"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                Standalone Version
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="section section--features" aria-labelledby="features-heading">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="features-heading" class="section-title">Why Choose OS Engine</h2>
-                    <p class="section-subtitle">Built for performance, designed for experience</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <img src="icons/performance.svg" alt="Performance icon" class="feature-card-icon">
-                        </div>
-                        <h3 class="feature-card-title">Performance Optimized</h3>
-                        <p class="feature-card-description">
-                            Engineered to run smoothly without compromising your system's performance or battery life.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <img src="icons/customization.svg" alt="Customization icon" class="feature-card-icon">
-                        </div>
-                        <h3 class="feature-card-title">Customizable</h3>
-                        <p class="feature-card-description">
-                            Complete control over your desktop environment with endless customization possibilities.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <img src="icons/evolution.svg" alt="Evolution icon" class="feature-card-icon">
-                        </div>
-                        <h3 class="feature-card-title">Always Evolving</h3>
-                        <p class="feature-card-description">
-                            Regular updates with new features and improvements based on user feedback.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <img src="icons/security.svg" alt="Security icon" class="feature-card-icon">
-                        </div>
-                        <h3 class="feature-card-title">Reliable & Secure</h3>
-                        <p class="feature-card-description">
-                            Built with security and stability in mind, ensuring a safe and dependable experience.
-                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="section section--about" aria-labelledby="about-heading">
+        <section id="about" class="py-20 bg-background">
             <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <div class="section-header">
-                            <h2 id="about-heading" class="section-title">About Vision Algorithms</h2>
-                            <p class="section-subtitle">Innovation at the core</p>
-                        </div>
-
-                        <div class="about-description">
-                            <p>
-                                Vision Algorithms is dedicated to creating innovative software that enhances your digital experience.
-                                We focus on building tools that are both powerful and efficient, ensuring they work seamlessly with your existing workflow.
-                            </p>
-                            <p>
-                                Our flagship product, OS Engine, demonstrates our commitment to performance optimization and user experience.
-                                We believe software should enhance your environment without compromising on speed or battery life.
-                            </p>
-                            <p>
-                                With 180+ Steam wishlists, 50+ Reddit community members, and over 178,534 Reddit views with 690 upvotes,
-                                we're building momentum and committed to delivering innovative solutions that push the boundaries
-                                of what's possible in digital environments.
-                            </p>
-                        </div>
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">About Vision Algorithms</h2>
+                    <div class="space-y-6 text-lg text-muted-foreground">
+                        <p></p>
+                            Vision Algorithms is dedicated to creating cutting-edge software solutions that enhance digital experiences.
+                            Our team combines technical expertise with creative vision to build products that push the boundaries of what's possible.
+                        </p>
+                        <p></p>
+                            With OS Engine, we're revolutionizing desktop customization by providing users with powerful, intuitive tools
+                            to personalize their computing environment like never before.
+                        </p>
+                        <p></p>
+                            With 180+ Steam wishlists, 50+ Reddit community members, and over 178,534 Reddit views with 690 upvotes,
+                            we're building momentum and committed to delivering innovative solutions that push the boundaries
+                            of what's possible in digital environments.
+                        </p>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="about-visual">
-                        <div class="company-stats">
-                            <div class="company-stat">
-                                <div class="company-stat-number">180+</div>
-                                <div class="company-stat-label">Steam Wishlists</div>
-                            </div>
-                            <div class="company-stat">
-                                <div class="company-stat-number">50+</div>
-                                <div class="company-stat-label">Reddit Members</div>
-                            </div>
-                            <div class="company-stat">
-                                <div class="company-stat-number">178K</div>
-                                <div class="company-stat-label">Reddit Views</div>
-                            </div>
-                        </div>
+        <!-- Stats Section -->
+        <section id="stats" class="py-20 bg-muted/50">
+            <div class="container">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Our Impact</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Building momentum with a growing community and engaged user base
+                    </p>
+                </div>
+
+                <div class="company-stats">
+                    <div class="company-stat">
+                        <div class="company-stat-number">180+</div>
+                        <div class="company-stat-label">Steam Wishlists</div>
+                    </div>
+                    <div class="company-stat">
+                        <div class="company-stat-number">50+</div>
+                        <div class="company-stat-label">Reddit Members</div>
+                    </div>
+                    <div class="company-stat">
+                        <div class="company-stat-number">178K</div>
+                        <div class="company-stat-label">Reddit Views</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section section--contact" aria-labelledby="contact-heading">
+        <section id="contact" class="py-20 bg-background">
             <div class="container">
-                <div class="section-header">
-                    <h2 id="contact-heading" class="section-title">Get In Touch</h2>
-                    <p class="section-subtitle">We'd love to hear from you</p>
-                </div>
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Get In Touch</h2>
+                    <p class="text-xl text-muted-foreground mb-12">
+                        Connect with us through our community channels and stay updated with the latest developments
+                    </p>
 
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-methods">
-                            <h3 class="contact-methods-title">Connect With Us</h3>
-
-                            <div class="contact-links">
-                                <a href="mailto:support@osengine.org" class="contact-link">
-                                    <img src="icons/email.svg" alt="Email icon" class="contact-icon">
-                                    <div class="contact-details">
-                                        <span class="contact-label">Email</span>
-                                        <span class="contact-value">support@osengine.org</span>
-                                    </div>
-                                </a>
-
-                                <a href="https://discord.gg/aGs5xfr7" class="contact-link" target="_blank" rel="noopener noreferrer">
-                                    <img src="icons/discord.svg" alt="Discord icon" class="contact-icon">
-                                    <div class="contact-details">
-                                        <span class="contact-label">Community</span>
-                                        <span class="contact-value">Join our Discord</span>
-                                    </div>
-                                </a>
-
-                                <a href="https://reddit.com/r/osengine" class="contact-link" target="_blank" rel="noopener noreferrer">
-                                    <img src="icons/reddit.svg" alt="Reddit icon" class="contact-icon">
-                                    <div class="contact-details">
-                                        <span class="contact-label">Reddit</span>
-                                        <span class="contact-value">50+ Members | 178K Views</span>
-                                    </div>
-                                </a>
-
-                                <a href="https://store.steampowered.com/app/3984710/OS_Engine/" class="contact-link" target="_blank" rel="noopener noreferrer">
-                                    <img src="icons/steam.svg" alt="Steam icon" class="contact-icon">
-                                    <div class="contact-details">
-                                        <span class="contact-label">Steam</span>
-                                        <span class="contact-value">180+ Wishlists</span>
-                                    </div>
-                                </a>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                        <a href="mailto:support@osengine.org" class="contact-link flex flex-col items-center text-center p-6 rounded-lg border border-border bg-card hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:shadow-md">
+                            <div class="contact-icon email-icon mb-4 flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground">
+                                <i class="fas fa-envelope text-xl"></i>
                             </div>
-                        </div>
+                            <div class="contact-details">
+                                <span class="contact-label block text-lg font-semibold mb-1">Email</span>
+                                <span class="contact-value text-sm text-muted-foreground">support@osengine.org</span>
+                            </div>
+                        </a>
+
+                        <a href="https://discord.gg/osengine" class="contact-link flex flex-col items-center text-center p-6 rounded-lg border border-border bg-card hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:shadow-md" target="_blank" rel="noopener noreferrer">
+                            <div class="contact-icon discord-icon mb-4 flex items-center justify-center w-12 h-12 rounded-full bg-[#5865F2] text-white">
+                                <i class="fab fa-discord text-xl"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label block text-lg font-semibold mb-1">Community</span>
+                                <span class="contact-value text-sm text-muted-foreground">Join our Discord</span>
+                            </div>
+                        </a>
+
+                        <a href="https://reddit.com/r/osengine" class="contact-link flex flex-col items-center text-center p-6 rounded-lg border border-border bg-card hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:shadow-md" target="_blank" rel="noopener noreferrer">
+                            <div class="contact-icon reddit-icon mb-4 flex items-center justify-center w-12 h-12 rounded-full bg-[#FF4500] text-white">
+                                <i class="fab fa-reddit-alien text-xl"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label block text-lg font-semibold mb-1">Reddit</span>
+                                <span class="contact-value text-sm text-muted-foreground">50+ Members</span>
+                            </div>
+                        </a>
+
+                        <a href="https://store.steampowered.com/app/3984710/OS_Engine/" class="contact-link flex flex-col items-center text-center p-6 rounded-lg border border-border bg-card hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:shadow-md" target="_blank" rel="noopener noreferrer">
+                            <div class="contact-icon steam-icon mb-4 flex items-center justify-center w-12 h-12 rounded-full bg-[#000000] text-white">
+                                <i class="fab fa-steam text-xl"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label block text-lg font-semibold mb-1">Steam</span>
+                                <span class="contact-value text-sm text-muted-foreground">180+ Wishlists</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -371,50 +302,44 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="/" class="footer-brand-link" aria-label="Vision Algorithms Home">
-                        <img src="images/visionappiconinverted 2.svg" alt="Vision Algorithms Logo" class="footer-logo">
-                        <span class="footer-brand-text">Vision Algorithms</span>
-                    </a>
-                    <p class="footer-tagline">
-                        Building innovative software solutions
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="images/visionappiconinverted 2.svg" alt="Vision Algorithms Logo" class="logo-image w-8 h-8 object-contain rounded-sm">
+                        <span class="text-lg font-semibold">Vision Algorithms</span>
+                    </div>
+                    <p class="text-sm text-muted-foreground">
+                        Creating innovative software solutions for modern digital environments.
                     </p>
                 </div>
 
-                <div class="footer-links">
-                    <div class="footer-nav">
-                        <h4 class="footer-nav-title">Quick Links</h4>
-                        <ul class="footer-nav-list" role="list">
-                            <li><a href="#products">Products</a></li>
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold">Products</h4>
+                    <div class="space-y-2">
+                        <a href="https://store.steampowered.com/app/3984710/OS_Engine/" class="footer-link block text-sm text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">OS Engine</a>
+                        <a href="#products" class="footer-link block text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
+                        <a href="#stats" class="footer-link block text-sm text-muted-foreground hover:text-foreground transition-colors">Community</a>
                     </div>
+                </div>
 
-                    <div class="footer-legal">
-                        <h4 class="footer-nav-title">Legal</h4>
-                        <ul class="footer-nav-list" role="list">
-                            <li><a href="https://osengine.org/terms" target="_blank" rel="noopener noreferrer">Terms</a></li>
-                            <li><a href="https://osengine.org/privacy" target="_blank" rel="noopener noreferrer">Privacy</a></li>
-                            <li><a href="https://osengine.org/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-                        </ul>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold">Company</h4>
+                    <div class="space-y-2">
+                        <a href="#about" class="footer-link block text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
+                        <a href="#contact" class="footer-link block text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+                        <a href="https://discord.gg/osengine" class="footer-link block text-sm text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">Support</a>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <div class="footer-copyright">
-                    © <span id="current-year">2025</span> Vision Algorithms. All rights reserved.
-                </div>
+                <p>&copy; <span id="current-year">2024</span> Vision Algorithms. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="js/script.js"></script>
 </body>
 </html>

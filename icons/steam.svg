@@ -1,9 +1,3 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
-  <path d="M16 16C16 13.7909 17.7909 12 20 12C22.2091 12 24 13.7909 24 16C24 18.2091 22.2091 20 20 20C17.7909 20 16 18.2091 16 16Z" stroke="currentColor" stroke-width="2"/>
-  <path d="M28 32C28 29.7909 29.7909 28 32 28C34.2091 28 36 29.7909 36 32C36 34.2091 34.2091 36 32 36C29.7909 36 28 34.2091 28 32Z" stroke="currentColor" stroke-width="2"/>
-  <path d="M20 16L28 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  <path d="M24 20L32 28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  <path d="M16 24L24 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  <path d="M20 28L28 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524s4.524 2.029 4.524 4.524-2.028 4.524-4.524 4.524c-1.261 0-2.4-.516-3.214-1.347L8.44 14.33c.05.009.1.014.15.014.999 0 1.908-.382 2.597-1.006l2.882 1.192c-.034.294-.054.594-.054.899 0 2.495 2.028 4.524 4.524 4.524s4.524-2.029 4.524-4.524S20.475 8.91 17.98 8.91c-1.214 0-2.307.481-3.117 1.259L12.86 8.52c.177-.623.448-1.205.798-1.729L16.6 3.7C15.505 1.574 13.904 0 11.98 0zm7.517 17.455c-1.357 0-2.461-1.105-2.461-2.462s1.104-2.462 2.461-2.462 2.461 1.105 2.461 2.462-1.104 2.462-2.461 2.462z"/>
 </svg>
