@@ -19,38 +19,52 @@ exports.handler = async (event, context) => {
 
   try {
     // Extract subreddit from path or query params
+    // Netlify Functions v1 (exports.handler) receives different event structure
     let subredditName = 'osengine';
     
-    // Try path parameters first (Netlify function context)
+    // Check multiple sources for the subreddit parameter
+    const checkPath = (pathString) => {
+      if (!pathString) return null;
+      const match = pathString.match(/\/subreddit\/([^\/\?&#]+)/i);
+      return match ? match[1] : null;
+    };
+    
+    // Try various event properties (Netlify Functions)
     if (event.pathParameters?.subreddit) {
       subredditName = event.pathParameters.subreddit;
-    }
-    // Try query parameters
-    else if (event.queryStringParameters?.subreddit) {
+    } else if (event.queryStringParameters?.subreddit) {
       subredditName = event.queryStringParameters.subreddit;
-    }
-    // Try extracting from path: /api/reddit/subreddit/osengine
-    else if (event.path) {
-      const match = event.path.match(/\/subreddit\/([^\/\?]+)/);
-      if (match) {
-        subredditName = match[1];
+    } else if (event.path && checkPath(event.path)) {
+      subredditName = checkPath(event.path);
+    } else if (event.rawPath && checkPath(event.rawPath)) {
+      subredditName = checkPath(event.rawPath);
+    } else if (event.rawQueryString) {
+      // Sometimes params are in rawQueryString like "subreddit=osengine"
+      const params = new URLSearchParams(event.rawQueryString);
+      if (params.get('subreddit')) {
+        subredditName = params.get('subreddit');
+      }
+    } else if (event.headers) {
+      // Check various headers
+      const headers = event.headers;
+      if (headers['x-forwarded-uri'] && checkPath(headers['x-forwarded-uri'])) {
+        subredditName = checkPath(headers['x-forwarded-uri']);
+      } else if (headers['x-forwarded-path'] && checkPath(headers['x-forwarded-path'])) {
+        subredditName = checkPath(headers['x-forwarded-path']);
+      } else if (headers['referer'] && checkPath(headers['referer'])) {
+        subredditName = checkPath(headers['referer']);
       }
     }
-    // Try extracting from rawPath (Netlify Functions)
-    else if (event.rawPath) {
-      const match = event.rawPath.match(/\/subreddit\/([^\/\?]+)/);
-      if (match) {
-        subredditName = match[1];
-      }
-    }
-    // Try extracting from headers (X-Forwarded-URI or similar)
-    else if (event.headers && event.headers['x-forwarded-uri']) {
-      const match = event.headers['x-forwarded-uri'].match(/\/subreddit\/([^\/\?]+)/);
-      if (match) {
-        subredditName = match[1];
-      }
-    }
+    
+    // Clean up the subreddit name
+    subredditName = subredditName.toLowerCase().trim();
 
+    // Log for debugging (will appear in Netlify Function logs)
+    console.log('Fetching Reddit data for subreddit:', subredditName);
+    console.log('Event path:', event.path);
+    console.log('Event rawPath:', event.rawPath);
+    console.log('Event queryStringParameters:', event.queryStringParameters);
+    
     const response = await fetch(`https://www.reddit.com/r/${subredditName}/about.json`, {
       headers: {
         'User-Agent': 'VisionAlgorithms:v1.0.0 (by /u/osengine)'
@@ -58,10 +72,12 @@ exports.handler = async (event, context) => {
     });
 
     if (!response.ok) {
+      console.error(`Reddit API returned status: ${response.status}`);
       throw new Error(`Reddit API error: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('Successfully fetched Reddit data, subscribers:', data?.data?.subscribers);
 
     return {
       statusCode: 200,
@@ -69,7 +85,8 @@ exports.handler = async (event, context) => {
       body: JSON.stringify(data)
     };
   } catch (error) {
-    console.error('Reddit API error:', error);
+    console.error('Reddit API error:', error.message);
+    console.error('Stack:', error.stack);
     
     // Return fallback data
     return {

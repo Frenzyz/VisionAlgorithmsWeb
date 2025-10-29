@@ -18,34 +18,16 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Extract app ID from path or query params
+    // Extract app ID from query params (Netlify redirect passes as query param)
     let appId = '3984710';
     
-    // Try path parameters first (Netlify function context)
-    if (event.pathParameters?.appid) {
-      appId = event.pathParameters.appid;
-    }
-    // Try query parameters
-    else if (event.queryStringParameters?.appid) {
+    // Check query parameters first (Netlify redirects pass params via query string)
+    if (event.queryStringParameters?.appid) {
       appId = event.queryStringParameters.appid;
-    }
-    // Try extracting from path: /api/steamspy/appdetails/3984710
-    else if (event.path) {
-      const match = event.path.match(/\/appdetails\/([^\/\?]+)/);
-      if (match) {
-        appId = match[1];
-      }
-    }
-    // Try extracting from rawPath (Netlify Functions)
-    else if (event.rawPath) {
-      const match = event.rawPath.match(/\/appdetails\/([^\/\?]+)/);
-      if (match) {
-        appId = match[1];
-      }
-    }
-    // Try extracting from headers
-    else if (event.headers && event.headers['x-forwarded-uri']) {
-      const match = event.headers['x-forwarded-uri'].match(/\/appdetails\/([^\/\?]+)/);
+    } else if (event.pathParameters?.appid) {
+      appId = event.pathParameters.appid;
+    } else if (event.path) {
+      const match = event.path.match(/\/appdetails\/([^\/\?&#]+)/i);
       if (match) {
         appId = match[1];
       }

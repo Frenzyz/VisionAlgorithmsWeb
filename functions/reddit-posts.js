@@ -18,38 +18,22 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Extract subreddit from path or query params
+    // Extract subreddit from query params (Netlify redirect passes as query param)
     let subredditName = 'osengine';
     
-    // Try path parameters first (Netlify function context)
-    if (event.pathParameters?.subreddit) {
-      subredditName = event.pathParameters.subreddit;
-    }
-    // Try query parameters
-    else if (event.queryStringParameters?.subreddit) {
+    // Check query parameters first (Netlify redirects pass params via query string)
+    if (event.queryStringParameters?.subreddit) {
       subredditName = event.queryStringParameters.subreddit;
-    }
-    // Try extracting from path: /api/reddit/posts/osengine?timeframe=all&limit=100
-    else if (event.path) {
-      const match = event.path.match(/\/posts\/([^\/\?]+)/);
+    } else if (event.pathParameters?.subreddit) {
+      subredditName = event.pathParameters.subreddit;
+    } else if (event.path) {
+      const match = event.path.match(/\/posts\/([^\/\?&#]+)/i);
       if (match) {
         subredditName = match[1];
       }
     }
-    // Try extracting from rawPath (Netlify Functions)
-    else if (event.rawPath) {
-      const match = event.rawPath.match(/\/posts\/([^\/\?]+)/);
-      if (match) {
-        subredditName = match[1];
-      }
-    }
-    // Try extracting from headers
-    else if (event.headers && event.headers['x-forwarded-uri']) {
-      const match = event.headers['x-forwarded-uri'].match(/\/posts\/([^\/\?]+)/);
-      if (match) {
-        subredditName = match[1];
-      }
-    }
+    
+    subredditName = subredditName.toLowerCase().trim();
     
     const timeframe = event.queryStringParameters?.timeframe || 'all';
     const limit = event.queryStringParameters?.limit || '100';
