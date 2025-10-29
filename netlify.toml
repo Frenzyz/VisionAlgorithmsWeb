@@ -5,6 +5,32 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Rewrite API calls to Netlify Functions (preserves path for parameter extraction)
+[[redirects]]
+  from = "/api/reddit/subreddit/:subreddit"
+  to = "/.netlify/functions/reddit-subreddit"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/reddit/posts/:subreddit"
+  to = "/.netlify/functions/reddit-posts"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/steam/appdetails/:appid"
+  to = "/.netlify/functions/steam-appdetails"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/steamspy/appdetails/:appid"
+  to = "/.netlify/functions/steamspy-appdetails"
+  status = 200
+  force = true
+
+# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -12,3 +38,4 @@
 
 [functions]
   directory = "functions"
+  node_bundler = "esbuild"
