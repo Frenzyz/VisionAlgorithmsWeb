@@ -13,8 +13,8 @@
   force = true
 
 [[redirects]]
-  from = "/api/reddit/posts/:subreddit*"
-  to = "/.netlify/functions/reddit-posts?subreddit=:splat"
+  from = "/api/reddit/posts/:subreddit"
+  to = "/.netlify/functions/reddit-posts?subreddit=:subreddit"
   status = 200
   force = true
 
