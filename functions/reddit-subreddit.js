@@ -1,108 +1,165 @@
 // Netlify Function: Reddit Subreddit Stats
 exports.handler = async (event, context) => {
+  console.log("=== REDDIT FUNCTION START ===");
+  console.log(
+    "Event received:",
+    JSON.stringify(
+      {
+        httpMethod: event.httpMethod,
+        path: event.path,
+        pathParameters: event.pathParameters,
+        queryStringParameters: event.queryStringParameters,
+        rawQueryString: event.rawQueryString,
+        headers: Object.keys(event.headers || {}),
+      },
+      null,
+      2,
+    ),
+  );
+
   // Handle CORS
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-    'Content-Type': 'application/json'
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Content-Type": "application/json",
   };
 
   // Handle preflight requests
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
+    console.log("Handling OPTIONS preflight request");
     return {
       statusCode: 200,
       headers,
-      body: ''
+      body: "",
     };
   }
 
   try {
-    // Extract subreddit from path or query params
-    // Netlify Functions v1 (exports.handler) receives different event structure
-    let subredditName = 'osengine';
-    
-    // Check multiple sources for the subreddit parameter
-    const checkPath = (pathString) => {
-      if (!pathString) return null;
-      const match = pathString.match(/\/subreddit\/([^\/\?&#]+)/i);
-      return match ? match[1] : null;
-    };
-    
-    // Try various event properties (Netlify Functions)
-    // With rewrites (status 200), event.path contains the original request path
-    if (event.path && checkPath(event.path)) {
-      subredditName = checkPath(event.path);
-    } else if (event.rawPath && checkPath(event.rawPath)) {
-      subredditName = checkPath(event.rawPath);
-    } else if (event.pathParameters?.subreddit) {
+    // Extract subreddit from path parameters
+    // Netlify Functions with redirects pass parameters in pathParameters
+    let subredditName = "osengine";
+
+    console.log("=== PATH PARAMETER EXTRACTION ===");
+
+    // First try pathParameters (most reliable with Netlify redirects)
+    if (event.pathParameters?.subreddit) {
       subredditName = event.pathParameters.subreddit;
-    } else if (event.queryStringParameters?.subreddit) {
-      subredditName = event.queryStringParameters.subreddit;
-    } else if (event.rawQueryString) {
-      // Sometimes params are in rawQueryString like "subreddit=osengine"
-      const params = new URLSearchParams(event.rawQueryString);
-      if (params.get('subreddit')) {
-        subredditName = params.get('subreddit');
-      }
-    } else if (event.headers) {
-      // Check various headers
-      const headers = event.headers;
-      if (headers['x-forwarded-uri'] && checkPath(headers['x-forwarded-uri'])) {
-        subredditName = checkPath(headers['x-forwarded-uri']);
-      } else if (headers['x-forwarded-path'] && checkPath(headers['x-forwarded-path'])) {
-        subredditName = checkPath(headers['x-forwarded-path']);
-      } else if (headers['referer'] && checkPath(headers['referer'])) {
-        subredditName = checkPath(headers['referer']);
+      console.log("✅ Using pathParameters.subreddit:", subredditName);
+    }
+    // Fallback to extracting from path
+    else if (event.path) {
+      const match = event.path.match(/\/subreddit\/([^\/\?&#]+)/i);
+      if (match) {
+        subredditName = match[1];
+        console.log("✅ Using path regex match:", subredditName);
+      } else {
+        console.log("❌ No match in path:", event.path);
       }
     }
-    
+    // Final fallback to query parameters
+    else if (event.queryStringParameters?.subreddit) {
+      subredditName = event.queryStringParameters.subreddit;
+      console.log("✅ Using queryStringParameters.subreddit:", subredditName);
+    } else {
+      console.log("⚠️ Using default subreddit name:", subredditName);
+    }
+
     // Clean up the subreddit name
     subredditName = subredditName.toLowerCase().trim();
+    console.log("Final subreddit name:", subredditName);
 
-    // Log for debugging (will appear in Netlify Function logs)
-    console.log('Fetching Reddit data for subreddit:', subredditName);
-    console.log('Event path:', event.path);
-    console.log('Event rawPath:', event.rawPath);
-    console.log('Event queryStringParameters:', event.queryStringParameters);
-    
-    const response = await fetch(`https://www.reddit.com/r/${subredditName}/about.json`, {
-      headers: {
-        'User-Agent': 'VisionAlgorithms:v1.0.0 (by /u/osengine)'
+    const redditUrl = `https://www.reddit.com/r/${subredditName}/about.json`;
+    console.log("=== MAKING REDDIT API REQUEST ===");
+    console.log("Reddit URL:", redditUrl);
+
+    try {
+      console.log("Starting fetch request...");
+      const response = await fetch(redditUrl, {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (compatible; VisionAlgorithms/1.0; +https://vision-algorithms.netlify.app)",
+        },
+        timeout: 10000, // 10 second timeout
+      });
+      console.log("Fetch request completed, status:", response.status);
+
+      if (!response.ok) {
+        console.error("❌ Reddit API returned error status:", response.status);
+        console.error(
+          "Reddit API response headers:",
+          Object.fromEntries(response.headers.entries()),
+        );
+
+        // Try to get error response body for more context
+        let errorBody = "";
+        try {
+          errorBody = await response.text();
+          console.error(
+            "Reddit API error response body:",
+            errorBody.substring(0, 500),
+          );
+        } catch (e) {
+          console.error("Could not read error response body:", e.message);
+        }
+
+        throw new Error(`Reddit API error: ${response.status}`);
       }
-    });
 
-    if (!response.ok) {
-      console.error(`Reddit API returned status: ${response.status}`);
-      throw new Error(`Reddit API error: ${response.status}`);
+      const data = await response.json();
+      console.log("✅ Successfully parsed Reddit JSON response");
+      console.log("Reddit subscribers count:", data?.data?.subscribers);
+
+      // Additional validation of the response data
+      if (!data || !data.data) {
+        console.error(
+          "❌ Invalid Reddit API response structure:",
+          JSON.stringify(data, null, 2),
+        );
+        throw new Error("Invalid Reddit API response structure");
+      }
+
+      if (typeof data.data.subscribers !== "number") {
+        console.error("❌ Invalid subscribers data:", data.data.subscribers);
+        throw new Error("Invalid subscribers data in Reddit response");
+      }
+
+      console.log("✅ Reddit API call successful!");
+      console.log("Subscribers:", data.data.subscribers);
+      console.log("Active users:", data.data.active_user_count);
+      console.log("=== RETURNING SUCCESS RESPONSE ===");
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(data),
+      };
+    } catch (fetchError) {
+      console.error("❌ Fetch request failed:", fetchError.message);
+      throw fetchError;
     }
-
-    const data = await response.json();
-    console.log('Successfully fetched Reddit data, subscribers:', data?.data?.subscribers);
-
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify(data)
-    };
   } catch (error) {
-    console.error('Reddit API error:', error.message);
-    console.error('Stack:', error.stack);
-    
-    // Return fallback data
+    console.error("=== FUNCTION ERROR ===");
+    console.error("Error message:", error.message);
+    console.error("Error stack:", error.stack);
+    console.error("Error name:", error.name);
+
+    // Return fallback data with more detailed error information
+    console.log("⚠️ Returning fallback data due to error");
+
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        error: 'Failed to fetch Reddit data',
+        error: "Failed to fetch Reddit data",
+        errorDetails: error.message,
         fallback: {
           data: {
             subscribers: 50,
-            active_user_count: 0
-          }
-        }
-      })
+            active_user_count: 0,
+          },
+        },
+      }),
     };
   }
 };
-
