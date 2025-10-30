@@ -81,7 +81,11 @@ exports.handler = async (event, context) => {
       const response = await fetch(redditUrl, {
         headers: {
           "User-Agent":
-            "Mozilla/5.0 (compatible; VisionAlgorithms/1.0; +https://vision-algorithms.netlify.app)",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+          Referer: "https://www.reddit.com/",
+          Accept: "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "Accept-Encoding": "gzip, deflate, br",
         },
         timeout: 10000, // 10 second timeout
       });
